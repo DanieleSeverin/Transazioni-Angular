@@ -1,12 +1,24 @@
-<div class="mb-10">
-    <div class="w-90 d-flex j-around">
-
-        <a routerLink="">
-            Home
-        </a>
-
-        <a routerLink="import">
-            Import
-        </a>
-    </div>
-</div>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>
+        <img src="your-logo.png" alt="Logo">
+      </span>
+      <span class="fill-space"></span>
+      <button mat-icon-button (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <mat-nav-list *ngIf="isMenuOpen" class="mobile-menu">
+    <a mat-list-item routerLink="" (click)="toggleMenu()">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </a>
+    <a mat-list-item routerLink="import" (click)="toggleMenu()">
+      <mat-icon>import_export</mat-icon>
+      <span>Import</span>
+    </a>
+    
+  </mat-nav-list>
+  

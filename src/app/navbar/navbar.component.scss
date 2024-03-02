@@ -1,0 +1,14 @@
+.fill-space {
+    flex: 1 1 auto;
+  }
+  
+  .mobile-menu {
+    width: 100%;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .mobile-menu {
+      display: none;
+    }
+  }
+  

@@ -8,6 +8,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
 
 const modules = [
   CommonModule,
@@ -19,6 +21,8 @@ const modules = [
   MatInputModule,
   MatProgressSpinnerModule,
   MatSnackBarModule,
+  MatToolbarModule,
+  MatListModule
 ];
 
 
