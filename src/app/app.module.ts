@@ -3,16 +3,45 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ImportMovementsComponent } from './import-movements/import-movements.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './material/material.module';
+import { ImportBoxComponent } from './import-movements/import-box/import-box.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CreateAccountDialogComponent } from './import-movements/create-account-dialog/create-account-dialog.component';
+import { LoadingSpinnerInterceptor } from './interceptors/loading-spinner.interceptor';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { ShellComponent } from './shell/shell.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ImportMovementsComponent,
+    ImportBoxComponent,
+    CreateAccountDialogComponent,
+    SpinnerComponent,
+    ShellComponent,
+    NavbarComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MaterialModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingSpinnerInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,16 @@
+<div class="w-100 vh-40 import-box" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+    <mat-icon class="icon me-3" [@fadeInOut]="'in'">cloud_upload</mat-icon>
+    <p [@fadeInOut]="'in'">Drag and drop a file here</p>
+    <button mat-raised-button color="primary" (click)="fileInput.click()">
+        <mat-icon>attach_file</mat-icon>
+        Choose File
+    </button>
+    <input #fileInput type="file" (change)="onFileSelected($event)" hidden>
+    <div *ngIf="uploadedFile" class="file-name">
+        File: {{ uploadedFile.name }}
+    </div>
+    <button *ngIf="uploadedFile" mat-raised-button color="secondary" (click)="sendFile()">
+        <mat-icon>send</mat-icon>
+        Send
+    </button>
+</div>

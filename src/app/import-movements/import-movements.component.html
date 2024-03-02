@@ -1,0 +1,46 @@
+<div class="w-100 d-flex j-center">
+    <div class="w-60 d-flex flex-column">
+        
+        <h3>Upload Movements</h3>
+
+        <!-- Choices -->
+        <form [formGroup]="form" class="w-100 d-flex j-between">
+
+            <!-- Data Source -->
+            <mat-form-field appearance="outline">
+                <mat-label>Data Source</mat-label>
+                <mat-select formControlName="dataSource">
+                  <mat-option *ngFor="let source of dataSources" [value]="source">
+                    {{source}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="dataSource?.errors?.['required']">Required field.</mat-error>
+            </mat-form-field>
+
+            <!-- Account -->
+            <mat-form-field appearance="outline">
+                <mat-label>Account</mat-label>
+                <mat-select formControlName="account">
+                  <mat-option (click)="openCreateNewAccountDialog()">
+                    New
+                  </mat-option>
+                  <mat-option *ngFor="let account of accounts" [value]="account.accountName">
+                    {{account.accountName}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="dataSource?.errors?.['required']">Required field.</mat-error>
+            </mat-form-field>
+
+          </form>
+
+        <!-- Upload -->
+        <div class="w-100 d-flex j-center mt-1">
+            <app-import-box class="w-100" 
+                           [uploadedFile]="uploadedFile" 
+                           (fileSelected)="onFileSelected($event)"
+                           (fileSended)="sendFile()">
+            </app-import-box>
+        </div>
+
+    </div>
+</div>
