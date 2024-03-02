@@ -1,14 +1,32 @@
+mat-toolbar {
+    height: 50px;
+}
+
 .fill-space {
     flex: 1 1 auto;
-  }
-  
-  .mobile-menu {
-    width: 100%;
-  }
-  
-  @media screen and (min-width: 768px) {
-    .mobile-menu {
-      display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .mobile-menu, .hamburger {
+        display: none;
     }
-  }
-  
+}
+
+.mobile-menu-overlay, .mobile-menu {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100%;
+}
+
+.mobile-menu-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.mobile-menu {
+    background-color: #fff;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
