@@ -3,6 +3,33 @@
 .blue { background-color: blue!important; }
 .green { background-color: green!important; }
 
+// text
+.text-center { text-align: center!important; }
+.text-left { text-align: left!important; }
+.text-right { text-align: right!important; }
+.text-justify { text-align: justify!important; }
+.text-uppercase { text-transform: uppercase!important; }
+.text-lowercase { text-transform: lowercase!important; }
+.text-capitalize { text-transform: capitalize!important; }
+.text-decoration-none { text-decoration: none!important; }
+
+// cursor
+.pointer { cursor: pointer!important; }
+
+// font-size
+@for $i from 1 through 100 {
+    .fs-#{$i} { 
+        font-size: $i + 0px!important;
+        }
+}
+
+// font-weight
+@for $i from 100 through 900 {
+    .fw-#{$i} { 
+        font-weight: $i!important;
+        }
+}
+
 // flex
 .d-flex{ display: flex!important; }
 .flex-column{ flex-direction: column!important; }
