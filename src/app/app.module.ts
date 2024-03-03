@@ -9,12 +9,13 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
 import { ImportBoxComponent } from './import-movements/import-box/import-box.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CreateAccountDialogComponent } from './import-movements/create-account-dialog/create-account-dialog.component';
+import { CreateAccountDialogComponent } from './create-account-dialog/create-account-dialog.component';
 import { LoadingSpinnerInterceptor } from './interceptors/loading-spinner.interceptor';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ShellComponent } from './shell/shell.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
+import { AddComponent } from './add/add.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HomeComponent } from './home/home.component';
     ShellComponent,
     NavbarComponent,
     HomeComponent,
+    AddComponent,
   ],
   imports: [
     BrowserModule,

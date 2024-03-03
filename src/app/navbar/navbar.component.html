@@ -16,6 +16,10 @@
         <mat-icon>import_export</mat-icon>
         <span>Import</span>
       </a>
+      <a mat-button *ngIf="!isSmallScreen" routerLink="add">
+        <mat-icon>add</mat-icon>
+        <span>Add</span>
+      </a>
     </mat-toolbar-row>
 </mat-toolbar>
   
@@ -28,6 +32,10 @@
       <a mat-list-item routerLink="import" (click)="toggleMenu()">
         <mat-icon>import_export</mat-icon>
         <span>Import</span>
+      </a>
+      <a mat-list-item routerLink="add" (click)="toggleMenu()">
+        <mat-icon>add</mat-icon>
+        <span>Add</span>
       </a>
 
     </mat-nav-list>

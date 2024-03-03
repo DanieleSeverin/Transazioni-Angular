@@ -4,7 +4,7 @@ import { Account } from '../models/accounts.model';
 import { ImportService } from '../services/import.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { CreateAccountDialogComponent } from './create-account-dialog/create-account-dialog.component';
+import { CreateAccountDialogComponent } from '../create-account-dialog/create-account-dialog.component';
 import { NotificationService } from '../services/notification.service';
 
 @Component({
