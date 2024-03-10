@@ -47,6 +47,8 @@
 .self-center{ align-self: center!important; }
 .self-start{ align-self: flex-start!important; }
 .self-end{ align-self: flex-end!important; }
+.flex-wrap{ flex-wrap: wrap!important; }
+.flex-nowrap{ flex-wrap: nowrap!important; }
 
 // width %
 @for $i from 1 through 100 {

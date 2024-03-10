@@ -13,7 +13,7 @@ export class AccountsService {
 
   constructor(private _api : ApiService) { }
 
-  GetAccounts(onlyPatrimonial? : boolean) :Observable<Result<Account[]>> {
+  GetAccounts(onlyPatrimonial? : boolean) : Observable<Result<Account[]>> {
     let url = `Accounts`;
     if(onlyPatrimonial){
       url = `${url}?onlyPatrimonial=true`;
@@ -21,7 +21,7 @@ export class AccountsService {
     return this._api.get(url);
   }
 
-  CreatePatrimonialAccount(accountName : string) :Observable<Result<Account>> {
+  CreatePatrimonialAccount(accountName : string) : Observable<Result<Account>> {
     const url = `Accounts/${accountName}/${true}`;
     return this._api.post(url, {isPatrimonial: true});
   }

@@ -16,6 +16,7 @@ import { ShellComponent } from './shell/shell.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { AddComponent } from './add/add.component';
+import { CreateMovementDialogComponent } from './create-movement-dialog/create-movement-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AddComponent } from './add/add.component';
     NavbarComponent,
     HomeComponent,
     AddComponent,
+    CreateMovementDialogComponent,
   ],
   imports: [
     BrowserModule,

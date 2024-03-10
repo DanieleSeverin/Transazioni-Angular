@@ -1,0 +1,75 @@
+<!-- Header -->
+<div class="d-flex j-between">
+    <h2>Create Movement</h2>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="save()">Save</button>
+</div>
+
+<form [formGroup]="form" class="w-100 d-flex flex-wrap">
+
+    <!-- account origin -->
+    <mat-form-field appearance="outline">
+        <mat-label>Account origin</mat-label>
+        <mat-select formControlName="accountId">
+            <mat-option *ngFor="let account of accounts$ | async" [value]="account.id">
+                {{ account.accountName }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- account destination -->
+    <mat-form-field appearance="outline">
+        <mat-label>Account destination</mat-label>
+        <mat-select formControlName="destinationAccountId">
+            <mat-option *ngFor="let account of accounts$ | async" [value]="account.id">
+                {{ account.accountName }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- movement date -->
+    <mat-form-field appearance="outline">
+        <mat-label>Movement date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- description -->
+    <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <input matInput placeholder="Description" formControlName="description">
+    </mat-form-field>
+    
+    <!-- amount -->
+    <mat-form-field appearance="outline">
+        <mat-label>Amount</mat-label>
+        <input matInput placeholder="100" formControlName="amount">
+    </mat-form-field>
+
+    <!-- currency -->
+    <mat-form-field appearance="outline">
+        <mat-label>Currency</mat-label>
+        <input matInput placeholder="EUR" formControlName="currency">
+    </mat-form-field>
+
+    <!-- category -->
+    <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+            <mat-option *ngFor="let category of categories" [value]="category.id">
+                {{ category.categoryName }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- peridiocity -->
+    <mat-form-field appearance="outline">
+        <mat-label>Peridiocity</mat-label>
+        <mat-select formControlName="peridiocity">
+            <mat-option *ngFor="let peridiocity of peridiocities" [value]="peridiocity">
+                {{ peridiocity }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</form>
