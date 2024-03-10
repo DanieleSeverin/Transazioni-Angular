@@ -10,7 +10,10 @@ export class LoadingSpinnerInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
     // Show spinner when request starts
-    this.spinnerService.show();
+    // Need to use setTimeout to avoid ExpressionChangedAfterItHasBeenCheckedError
+    setTimeout(() => {
+      this.spinnerService.show();
+    }, 0);
 
     return next.handle(request).pipe(
       tap((event) => {
