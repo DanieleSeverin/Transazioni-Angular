@@ -12,6 +12,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 const modules = [
   CommonModule,
@@ -26,7 +28,9 @@ const modules = [
   MatToolbarModule,
   MatListModule,
   LayoutModule,
-  MatCardModule
+  MatCardModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ];
 
 
