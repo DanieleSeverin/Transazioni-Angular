@@ -10,20 +10,20 @@ export class ApiService {
 
   constructor(private _http: HttpClient) { }
 
-  get(url: string) :Observable<any> {
-    return this._http.get(`${environment.apiUrl}/${url}`);
+  get<TResponse>(url: string) :Observable<TResponse> {
+    return this._http.get<TResponse>(`${environment.apiUrl}/${url}`);
   }
 
-  post(url: string, data: any) :Observable<any> {
-    return this._http.post(`${environment.apiUrl}/${url}`, data);
+  post<TRequest, TResponse>(url: string, data: TRequest) :Observable<TResponse> {
+    return this._http.post<TResponse>(`${environment.apiUrl}/${url}`, data);
   }
 
-  put(url: string, data: any) :Observable<any> {
-    return this._http.put(`${environment.apiUrl}/${url}`, data);
+  put<TRequest, TResponse>(url: string, data: TRequest) :Observable<TResponse> {
+    return this._http.put<TResponse>(`${environment.apiUrl}/${url}`, data);
   }
 
-  delete(url: string) :Observable<any> {
-    return this._http.delete(`${environment.apiUrl}/${url}`);
+  delete<TResponse>(url: string) :Observable<TResponse> {
+    return this._http.delete<TResponse>(`${environment.apiUrl}/${url}`);
   }
 
 }
