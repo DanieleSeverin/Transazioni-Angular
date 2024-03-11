@@ -14,6 +14,7 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 const modules = [
   CommonModule,
@@ -30,7 +31,8 @@ const modules = [
   LayoutModule,
   MatCardModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatCheckboxModule
 ];
 
 

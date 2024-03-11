@@ -1,4 +1,4 @@
-import { Peridiocity } from "./peridiocity.enum";
+import { Periodicity } from "./periodicity.enum";
 
 export interface Movement {
     id?: string;
@@ -9,5 +9,5 @@ export interface Movement {
     amount: number;
     currency: string;
     category: string;
-    peridiocity: Peridiocity;
+    periodicity: Periodicity;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountsService } from '../services/accounts.service';
-import { Account } from '../models/accounts.model';
+import { Account, CreateAccountRequest } from '../models/accounts.model';
 import { ImportService } from '../services/import.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -60,17 +60,17 @@ export class ImportMovementsComponent implements OnInit {
       this.dialogRef = null;
 
       if(result){
-        this.CreatePatrimonialAccount(result);
+        this.CreateAccount(result);
       }
     });
   }
 
-  CreatePatrimonialAccount(accountName : string){
-    if(!accountName){
+  CreateAccount(account : CreateAccountRequest){
+    if(!account){
       return;
     }
 
-    this._accounts.CreatePatrimonialAccount(accountName).subscribe({
+    this._accounts.CreateAccount(account).subscribe({
       next: data => {
         console.log(data);
         this.accounts = [data.value, ...this.accounts];

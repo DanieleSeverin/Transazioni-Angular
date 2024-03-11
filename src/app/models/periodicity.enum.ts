@@ -1,4 +1,4 @@
-export enum Peridiocity {
+export enum Periodicity {
     None = 'None',
     Daily = 'Daily',
     Weekly = 'Weekly',

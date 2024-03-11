@@ -7,6 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CreateMovementDialogComponent } from '../create-movement-dialog/create-movement-dialog.component';
 import { Movement } from '../models/movements.model';
 import { MovementsService } from '../services/movements.service';
+import { CreateAccountRequest } from '../models/accounts.model';
 
 @Component({
   selector: 'app-add',
@@ -35,17 +36,17 @@ export class AddComponent implements OnInit {
       this.dialogRef = null;
 
       if(result){
-        this.CreatePatrimonialAccount(result);
+        this.CreateAccount(result);
       }
     });
   }
 
-  CreatePatrimonialAccount(accountName : string){
-    if(!accountName){
+  CreateAccount(account : CreateAccountRequest){
+    if(!account){
       return;
     }
 
-    this._accounts.CreatePatrimonialAccount(accountName).subscribe({
+    this._accounts.CreateAccount(account).subscribe({
       next: data => {
         console.log(data);
         this._notifier.showSuccess('Account created successfully');

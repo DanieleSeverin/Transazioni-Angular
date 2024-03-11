@@ -4,13 +4,14 @@
     <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="save()">Save</button>
 </div>
 
+<!-- TODO: add error handling -->
 <form [formGroup]="form" class="w-100 d-flex flex-wrap">
 
     <!-- account origin -->
     <mat-form-field appearance="outline">
         <mat-label>Account origin</mat-label>
         <mat-select formControlName="accountId">
-            <mat-option *ngFor="let account of accounts$ | async" [value]="account.id">
+            <mat-option *ngFor="let account of patrimonialAccounts$ | async" [value]="account.id">
                 {{ account.accountName }}
             </mat-option>
         </mat-select>
@@ -20,7 +21,7 @@
     <mat-form-field appearance="outline">
         <mat-label>Account destination</mat-label>
         <mat-select formControlName="destinationAccountId">
-            <mat-option *ngFor="let account of accounts$ | async" [value]="account.id">
+            <mat-option *ngFor="let account of economicAccounts$ | async" [value]="account.id">
                 {{ account.accountName }}
             </mat-option>
         </mat-select>
@@ -65,7 +66,7 @@
     <!-- peridiocity -->
     <mat-form-field appearance="outline">
         <mat-label>Peridiocity</mat-label>
-        <mat-select formControlName="peridiocity">
+        <mat-select formControlName="periodicity" [value]="peridiocities[0]">
             <mat-option *ngFor="let peridiocity of peridiocities" [value]="peridiocity">
                 {{ peridiocity }}
             </mat-option>

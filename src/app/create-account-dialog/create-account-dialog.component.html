@@ -6,8 +6,12 @@
         <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="save()">Save</button>
     </div>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Account name</mat-label>
-        <input matInput placeholder="My account name" formControlName="accountName">
-    </mat-form-field>
+    <div class="w-100 d-flex a-baseline gap-5">
+        <mat-form-field appearance="outline">
+            <mat-label>Account name</mat-label>
+            <input matInput placeholder="My account name" formControlName="accountName">
+        </mat-form-field>
+    
+        <mat-checkbox formControlName="isPatrimonial">Bank account</mat-checkbox>
+    </div>
 </form>
