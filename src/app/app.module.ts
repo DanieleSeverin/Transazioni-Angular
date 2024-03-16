@@ -17,6 +17,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { AddComponent } from './add/add.component';
 import { CreateMovementDialogComponent } from './create-movement-dialog/create-movement-dialog.component';
+import { CreateRuleDialogComponent } from './create-rule-dialog/create-rule-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CreateMovementDialogComponent } from './create-movement-dialog/create-m
     HomeComponent,
     AddComponent,
     CreateMovementDialogComponent,
+    CreateRuleDialogComponent,
   ],
   imports: [
     BrowserModule,

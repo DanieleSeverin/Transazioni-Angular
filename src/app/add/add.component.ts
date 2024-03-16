@@ -8,6 +8,9 @@ import { CreateMovementDialogComponent } from '../create-movement-dialog/create-
 import { Movement } from '../models/movements.model';
 import { MovementsService } from '../services/movements.service';
 import { CreateAccountRequest } from '../models/accounts.model';
+import { CreateRuleDialogComponent } from '../create-rule-dialog/create-rule-dialog.component';
+import { AccountRule } from '../models/account-rule.model';
+import { AccountRulesService } from '../services/account-rules.service';
 
 @Component({
   selector: 'app-add',
@@ -20,6 +23,7 @@ export class AddComponent implements OnInit {
 
   constructor(private _accounts: AccountsService, 
               private _movements : MovementsService,
+              private _accountRules : AccountRulesService,
               private _dialog: MatDialog,
               private _notifier: NotificationService) { }
 
@@ -92,6 +96,38 @@ export class AddComponent implements OnInit {
       }
     });
     
+  }
+
+  openCreateNewRuleDialog(){
+    this.dialogRef = this._dialog.open(CreateRuleDialogComponent, {
+      minWidth: '40vw',
+      data: {
+        accounts$: this._accounts.GetAccounts()
+      },
+      autoFocus: false
+    });
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed. Result: ', result);
+      this.dialogRef = null;
+
+      if(result){
+        this.CreateRule(result);
+      }
+    });
+  }
+
+  CreateRule(rule: AccountRule){
+    this._accountRules.CreateAccountRule(rule).subscribe({
+      next: data => {
+        console.log(data);
+        this._notifier.showSuccess('Rule created successfully');
+      },
+      error: (error : HttpErrorResponse) => {
+        console.error(error);
+        this._notifier.showHttpError(error, 'Error creating rule');
+      }
+    });
   }
 
 }

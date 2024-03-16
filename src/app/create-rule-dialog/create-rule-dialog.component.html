@@ -1,0 +1,29 @@
+<form [formGroup]="form">
+
+    <!-- Header -->
+    <div class="d-flex j-between">
+        <h2>Create Rule</h2>
+        <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="save()">Save</button>
+    </div>
+
+    <div class="w-100 d-flex a-baseline gap-5">
+
+        <!-- Account -->
+        <mat-form-field appearance="outline">
+            <mat-label>Account origin</mat-label>
+            <mat-select formControlName="accountId">
+                <mat-option *ngFor="let account of accounts$ | async" [value]="account.id">
+                    {{ account.accountName }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="accountId?.hasError('required')">This field is required</mat-error>
+        </mat-form-field>
+
+        <!-- Rule -->
+        <mat-form-field appearance="outline">
+            <mat-label>Query</mat-label>
+            <input matInput placeholder="Wage" formControlName="query">
+            <mat-error *ngIf="query?.hasError('required')">This field is required</mat-error>
+        </mat-form-field>
+    </div>
+</form>
