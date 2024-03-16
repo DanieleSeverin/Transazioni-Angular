@@ -28,7 +28,8 @@ export class AddComponent implements OnInit {
 
   openCreateNewAccountDialog(){
     this.dialogRef = this._dialog.open(CreateAccountDialogComponent, {
-      minWidth: '40vw'
+      minWidth: '40vw',
+      autoFocus: false
     });
 
     this.dialogRef.afterClosed().subscribe(result => {
@@ -63,7 +64,8 @@ export class AddComponent implements OnInit {
       minWidth: '40vw',
       data: {
         accounts$: this._accounts.GetAccounts()
-      }
+      },
+      autoFocus: false
     });
 
     this.dialogRef.afterClosed().subscribe(result => {

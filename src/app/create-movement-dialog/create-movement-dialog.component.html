@@ -15,6 +15,7 @@
                 {{ account.accountName }}
             </mat-option>
         </mat-select>
+        <mat-error *ngIf="accountId?.hasError('required')">This field is required</mat-error>
     </mat-form-field>
 
     <!-- account destination -->
@@ -25,6 +26,7 @@
                 {{ account.accountName }}
             </mat-option>
         </mat-select>
+        <mat-error *ngIf="destinationAccountId?.hasError('required')">This field is required</mat-error>
     </mat-form-field>
 
     <!-- movement date -->
@@ -33,24 +35,28 @@
         <input matInput [matDatepicker]="picker" formControlName="date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="date?.hasError('required')">This field is required</mat-error>
     </mat-form-field>
 
     <!-- description -->
     <mat-form-field appearance="outline">
         <mat-label>Description</mat-label>
         <input matInput placeholder="Description" formControlName="description">
+        <mat-error *ngIf="description?.hasError('required')">This field is required</mat-error>
     </mat-form-field>
     
     <!-- amount -->
     <mat-form-field appearance="outline">
         <mat-label>Amount</mat-label>
         <input matInput placeholder="100" formControlName="amount">
+        <mat-error *ngIf="amount?.hasError('required')">This field is required</mat-error>
     </mat-form-field>
 
     <!-- currency -->
     <mat-form-field appearance="outline">
         <mat-label>Currency</mat-label>
         <input matInput placeholder="EUR" formControlName="currency">
+        <mat-error *ngIf="currency?.hasError('required')">This field is required</mat-error>
     </mat-form-field>
 
     <!-- category -->
@@ -71,6 +77,7 @@
                 {{ peridiocity }}
             </mat-option>
         </mat-select>
+        <mat-error *ngIf="periodicity?.hasError('required')">This field is required</mat-error>
     </mat-form-field>
 
 </form>
