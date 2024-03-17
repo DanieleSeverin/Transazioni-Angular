@@ -26,7 +26,7 @@ export class CreateMovementDialogComponent {
     destinationAccountId : ['', [Validators.required] ],
     date: [new Date(), [Validators.required] ],
     description : ['', [Validators.required] ],
-    amount: [0, [Validators.required] ],
+    amount: ['', [Validators.required] ],
     currency: ['EUR', [Validators.required] ],
     category: [''],
     periodicity: [this.peridiocities[0], [Validators.required] ],

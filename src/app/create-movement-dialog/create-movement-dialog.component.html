@@ -48,7 +48,8 @@
     <!-- amount -->
     <mat-form-field appearance="outline">
         <mat-label>Amount</mat-label>
-        <input matInput placeholder="100" formControlName="amount">
+        <input matInput placeholder="-100" formControlName="amount">
+        <mat-hint>Use negative amount for costs</mat-hint>
         <mat-error *ngIf="amount?.hasError('required')">This field is required</mat-error>
     </mat-form-field>
 
