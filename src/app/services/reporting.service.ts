@@ -3,6 +3,7 @@ import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
 import { Result } from '../models/result.model';
 import { AccountsBalanceSummary } from '../models/account-balance-summary.model';
+import { CostsSummary } from '../models/costs-summary.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,11 @@ export class ReportingService {
 
   GetAccountsBalance() :Observable<Result<AccountsBalanceSummary[]>> {
     const url = `reporting/accounts-balance`;
+    return this._api.get(url);
+  }
+
+  GetCosts() :Observable<Result<CostsSummary[]>> {
+    const url = `reporting/costs`;
     return this._api.get(url);
   }
 }

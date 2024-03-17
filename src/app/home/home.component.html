@@ -1,8 +1,18 @@
+<h2>Balance</h2>
 <div *ngIf="(AccountsBalanceSummary$ | async) as balanceSummary">
     <ul>
       <li *ngFor="let account of balanceSummary.value">
         {{ account.accountName }}: {{ account.balance }} {{ account.currency }}
       </li>
     </ul>
-  </div>
+</div>
+
+<h2>Costs</h2>
+<div *ngIf="(CostsSummary$ | async) as costsSummary">
+  <ul>
+    <li *ngFor="let account of costsSummary.value">
+      {{ account.accountName }}: {{ account.amount }} {{ account.currency }}
+    </li>
+  </ul>
+</div>
   
