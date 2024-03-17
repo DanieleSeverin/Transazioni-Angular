@@ -26,5 +26,7 @@
 </div>
 
 <!-- Grafici -->
-<app-pie *ngIf="RevenueSummary$ | async as data" [chartData]="data"></app-pie>
-<app-pie *ngIf="CostsSummary$ | async as data" [chartData]="data"></app-pie>v>
+<div class="w-100 d-flex j-center gap-5">
+  <app-pie *ngIf="RevenueSummary$ | async as data" [chartData]="data"></app-pie>
+  <app-pie *ngIf="CostsSummary$ | async as data" [chartData]="data"></app-pie>
+</div>
