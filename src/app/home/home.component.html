@@ -7,6 +7,15 @@
     </ul>
 </div>
 
+<h2>Revenue</h2>
+<div *ngIf="(RevenueSummary$ | async) as revenueSummary">
+  <ul>
+    <li *ngFor="let account of revenueSummary.value">
+      {{ account.accountName }}: {{ account.amount }} {{ account.currency }}
+    </li>
+  </ul>
+</div>
+
 <h2>Costs</h2>
 <div *ngIf="(CostsSummary$ | async) as costsSummary">
   <ul>
