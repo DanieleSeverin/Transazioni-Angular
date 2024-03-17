@@ -1,7 +1,7 @@
 <h2>Balance</h2>
 <div *ngIf="(AccountsBalanceSummary$ | async) as balanceSummary">
     <ul>
-      <li *ngFor="let account of balanceSummary.value">
+      <li *ngFor="let account of balanceSummary">
         {{ account.accountName }}: {{ account.balance }} {{ account.currency }}
       </li>
     </ul>
@@ -10,7 +10,7 @@
 <h2>Revenue</h2>
 <div *ngIf="(RevenueSummary$ | async) as revenueSummary">
   <ul>
-    <li *ngFor="let account of revenueSummary.value">
+    <li *ngFor="let account of revenueSummary">
       {{ account.accountName }}: {{ account.amount }} {{ account.currency }}
     </li>
   </ul>
@@ -19,9 +19,12 @@
 <h2>Costs</h2>
 <div *ngIf="(CostsSummary$ | async) as costsSummary">
   <ul>
-    <li *ngFor="let account of costsSummary.value">
+    <li *ngFor="let account of costsSummary">
       {{ account.accountName }}: {{ account.amount }} {{ account.currency }}
     </li>
   </ul>
 </div>
-  
+
+<!-- Grafici -->
+<app-pie *ngIf="RevenueSummary$ | async as data" [chartData]="data"></app-pie>
+<app-pie *ngIf="CostsSummary$ | async as data" [chartData]="data"></app-pie>v>

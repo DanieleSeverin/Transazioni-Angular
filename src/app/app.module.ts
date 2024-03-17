@@ -18,6 +18,8 @@ import { HomeComponent } from './home/home.component';
 import { AddComponent } from './add/add.component';
 import { CreateMovementDialogComponent } from './create-movement-dialog/create-movement-dialog.component';
 import { CreateRuleDialogComponent } from './create-rule-dialog/create-rule-dialog.component';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { PieComponent } from './charts/pie/pie.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { CreateRuleDialogComponent } from './create-rule-dialog/create-rule-dial
     AddComponent,
     CreateMovementDialogComponent,
     CreateRuleDialogComponent,
+    PieComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,10 @@ import { CreateRuleDialogComponent } from './create-rule-dialog/create-rule-dial
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    }),
   ],
   providers: [
     {
