@@ -1,4 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { EChartsOption } from 'echarts';
+import { PieChartInputData } from 'src/app/models/charts/PieChartInputData.model';
 import { CostsSummary } from 'src/app/models/reporting/costs-summary.model';
 
 @Component({
@@ -8,34 +10,44 @@ import { CostsSummary } from 'src/app/models/reporting/costs-summary.model';
 })
 export class PieComponent implements OnChanges {
 
-  @Input() chartData ?: any;
+  @Input() title ?: string;
+  @Input() chartData: PieChartInputData[] = [];
 
-  chartOptions? : any;
+  chartOptions? : EChartsOption;
 
   constructor() { }
 
   ngOnChanges(changes : SimpleChanges): void {
     if(changes['chartData'] && this.chartData){
-      this.chartOptions = {
-        tooltip: {
-          trigger: 'item',
-          formatter: '{a} <br/>{b}: {c} ({d}%)'
-        },
-        series: [
-          {
-            name: 'Costs',
-            type: 'pie',
-            radius: '50%',
-            data: this.chartData.map( (x : any) => {
-              return {
-                name: `${x.accountName} (${x.currency})`,
-                value: x.amount < 0 ? x.amount * -1 : x.amount
-              };
-            })
-          }
-        ]
-      };
+      this.chartOptions = this.getChartOptions();
     }
+  }
+
+  getChartOptions() : EChartsOption {
+    return {
+      title: {
+        left: '50%',
+        text: this.title,
+        textAlign: 'center',
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
+      },
+      series: [
+        {
+          name: this.title,
+          type: 'pie',
+          radius: '50%',
+          data: this.chartData.map( (x : PieChartInputData) => {
+            return {
+              name: `${x.name}`,
+              value: x.value < 0 ? x.value * -1 : x.value
+            };
+          })
+        }
+      ]
+    };
   }
 
 }
