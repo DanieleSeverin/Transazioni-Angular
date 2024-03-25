@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -10,8 +10,8 @@ export class ApiService {
 
   constructor(private _http: HttpClient) { }
 
-  get<TResponse>(url: string) :Observable<TResponse> {
-    return this._http.get<TResponse>(`${environment.apiUrl}/${url}`);
+  get<TResponse>(url: string, params? : HttpParams) :Observable<TResponse> {
+    return this._http.get<TResponse>(`${environment.apiUrl}/${url}`, { params });
   }
 
   post<TRequest, TResponse>(url: string, data: TRequest) :Observable<TResponse> {

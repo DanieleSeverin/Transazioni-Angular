@@ -20,6 +20,7 @@ import { CreateMovementDialogComponent } from './create-movement-dialog/create-m
 import { CreateRuleDialogComponent } from './create-rule-dialog/create-rule-dialog.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { PieComponent } from './charts/pie/pie.component';
+import { MovementsTableComponent } from './movements-table/movements-table.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { PieComponent } from './charts/pie/pie.component';
     CreateMovementDialogComponent,
     CreateRuleDialogComponent,
     PieComponent,
+    MovementsTableComponent,
   ],
   imports: [
     BrowserModule,
