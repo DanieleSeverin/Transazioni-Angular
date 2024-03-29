@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { ReportingService } from '../services/reporting.service';
 import { Observable, map, shareReplay } from 'rxjs';
-import { Result } from '../models/result.model';
 import { AccountsBalanceSummary } from '../models/reporting/account-balance-summary.model';
 import { CostsSummary } from '../models/reporting/costs-summary.model';
 import { RevenueSummary } from '../models/reporting/revenue-summary.model';
-import { EChartsOption } from 'echarts';
 import { PieChartInputData } from '../models/charts/PieChartInputData.model';
 
 @Component({

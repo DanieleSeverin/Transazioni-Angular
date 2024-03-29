@@ -16,13 +16,13 @@ export class MovementsService {
     return this._api.post('Movements', movement);
   }
 
-  GetMovements(filter: GetMovementsFilter): Observable<Result<GetMovementsResponse[]>> {
+  GetMovements(filters: GetMovementsFilter): Observable<Result<GetMovementsResponse[]>> {
 
     let params = new HttpParams();
 
-    Object.keys(filter).forEach(key => {
-      if (filter[key as keyof GetMovementsFilter] !== undefined && filter[key as keyof GetMovementsFilter] !== null) {
-        params = params.set(key, filter[key as keyof GetMovementsFilter]!.toString());
+    Object.keys(filters).forEach(key => {
+      if (filters[key as keyof GetMovementsFilter] !== undefined && filters[key as keyof GetMovementsFilter] !== null) {
+        params = params.set(key, filters[key as keyof GetMovementsFilter]!.toString());
       }
     });
 

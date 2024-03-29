@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
 import { ImportBoxComponent } from './import-movements/import-box/import-box.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateAccountDialogComponent } from './create-account-dialog/create-account-dialog.component';
 import { LoadingSpinnerInterceptor } from './interceptors/loading-spinner.interceptor';
 import { SpinnerComponent } from './spinner/spinner.component';
@@ -44,6 +44,7 @@ import { MovementsTableComponent } from './movements-table/movements-table.compo
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     MaterialModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')

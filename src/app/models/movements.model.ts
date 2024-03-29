@@ -13,7 +13,7 @@ export interface Movement {
 }
 
 export interface GetMovementsFilter {
-    originAccountId?: string;
+    originAccountId?: string | null;
     destinationAccountId?: string;
     startDate?: Date;
     endDate?: Date;

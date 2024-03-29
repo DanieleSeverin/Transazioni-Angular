@@ -1,7 +1,34 @@
 <div class="w-100 d-flex j-center mt-5">
   <div class="w-95 flex-column gap-3">
 
-    <!-- table -->
+    <!-- Filters -->
+    <div class="w-100 d-flex j-between">
+
+      <!-- Origin Account -->
+      <mat-form-field appearance="outline">
+        <mat-label>Origin</mat-label>
+        <mat-select [(ngModel)]="filters.originAccountId" (selectionChange)="fetchMovements()">
+          <mat-option value="">All</mat-option>
+          <mat-option *ngFor="let account of (accounts$ | async)?.value" [value]="account.id">
+            {{account.accountName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Destination Account -->
+      <mat-form-field appearance="outline">
+        <mat-label>Destination</mat-label>
+        <mat-select [(ngModel)]="filters.destinationAccountId" (selectionChange)="fetchMovements()">
+          <mat-option value="">All</mat-option>
+          <mat-option *ngFor="let account of (accounts$ | async)?.value" [value]="account.id">
+            {{account.accountName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <!-- Table -->
     <table *ngIf="movements$ | async as movements" [dataSource]="movements.value" mat-table class="w-100 mat-elevation-z8" >
   
       <!-- Date Column -->
