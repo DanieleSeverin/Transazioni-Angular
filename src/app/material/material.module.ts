@@ -16,6 +16,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 const modules = [
   CommonModule,
@@ -34,7 +35,8 @@ const modules = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatCheckboxModule,
-  MatTableModule
+  MatTableModule,
+  MatPaginatorModule
 ];
 
 

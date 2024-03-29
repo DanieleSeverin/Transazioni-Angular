@@ -4,6 +4,7 @@ import { GetMovementsFilter, GetMovementsResponse, Movement } from '../models/mo
 import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Result } from '../models/result.model';
+import { Pagination, PaginationResponse } from '../models/pagination';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +17,19 @@ export class MovementsService {
     return this._api.post('Movements', movement);
   }
 
-  GetMovements(filters: GetMovementsFilter): Observable<Result<GetMovementsResponse[]>> {
+  GetMovements(filters: GetMovementsFilter, pagination : Pagination): Observable<Result<PaginationResponse<GetMovementsResponse>>> {
 
     let params = new HttpParams();
 
-    Object.keys(filters).forEach(key => {
-      if (filters[key as keyof GetMovementsFilter] !== undefined && filters[key as keyof GetMovementsFilter] !== null) {
-        params = params.set(key, filters[key as keyof GetMovementsFilter]!.toString());
+    const queryParams = {...filters, ...pagination};
+
+    Object.keys(queryParams).forEach(key => {
+      if (queryParams[key as keyof GetMovementsFilter] !== undefined && queryParams[key as keyof GetMovementsFilter] !== null) {
+        params = params.set(key, queryParams[key as keyof GetMovementsFilter]!.toString());
       }
     });
 
-    return this._api.get<any>('Movements', params);
+    return this._api.get<Result<PaginationResponse<GetMovementsResponse>>>('Movements', params);
   }
   
 }

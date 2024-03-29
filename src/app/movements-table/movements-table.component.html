@@ -9,7 +9,7 @@
         <mat-label>Origin</mat-label>
         <mat-select [(ngModel)]="filters.originAccountId" (selectionChange)="fetchMovements()">
           <mat-option value="">All</mat-option>
-          <mat-option *ngFor="let account of (accounts$ | async)?.value" [value]="account.id">
+          <mat-option *ngFor="let account of accounts$ | async" [value]="account.id">
             {{account.accountName}}
           </mat-option>
         </mat-select>
@@ -20,7 +20,7 @@
         <mat-label>Destination</mat-label>
         <mat-select [(ngModel)]="filters.destinationAccountId" (selectionChange)="fetchMovements()">
           <mat-option value="">All</mat-option>
-          <mat-option *ngFor="let account of (accounts$ | async)?.value" [value]="account.id">
+          <mat-option *ngFor="let account of accounts$ | async" [value]="account.id">
             {{account.accountName}}
           </mat-option>
         </mat-select>
@@ -29,7 +29,7 @@
     </div>
 
     <!-- Table -->
-    <table *ngIf="movements$ | async as movements" [dataSource]="movements.value" mat-table class="w-100 mat-elevation-z8" >
+    <table *ngIf="movements$ | async as movements" [dataSource]="movements" mat-table class="w-100 mat-elevation-z8" >
   
       <!-- Date Column -->
       <ng-container matColumnDef="date">
@@ -89,6 +89,14 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let movement; columns: displayedColumns;"></tr>
     </table>
+    <mat-paginator class="w-100 mat-elevation-z8 mb-5"
+                   [length]="movementsCount"
+                   [pageSize]="pagination.pageSize"
+                   [pageSizeOptions]="[5, 10, 25, 100]"
+                   (page)="onPageChange($event)"
+                   aria-label="Select page">
+    </mat-paginator>
+
 
   </div>
 </div>
