@@ -29,47 +29,49 @@
     </div>
 
     <!-- Table -->
-    <table *ngIf="movements$ | async as movements" [dataSource]="movements" mat-table class="w-100 mat-elevation-z8" >
+    <table [dataSource]="(movements$ | async)?.value?.list ?? []" 
+           mat-table matSort
+           class="w-100 mat-elevation-z8" >
   
       <!-- Date Column -->
       <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
         <td mat-cell *matCellDef="let movement">{{ movement.date | date }}</td>
       </ng-container>
     
       <!-- Description Column -->
       <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
         <td mat-cell *matCellDef="let movement">{{ movement.description }}</td>
       </ng-container>
     
       <!-- Amount Column -->
       <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef>Amount</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
         <td mat-cell *matCellDef="let movement">{{ movement.amount }}</td>
       </ng-container>
     
       <!-- Currency Column -->
       <ng-container matColumnDef="currency">
-        <th mat-header-cell *matHeaderCellDef>Currency</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Currency</th>
         <td mat-cell *matCellDef="let movement">{{ movement.currency }}</td>
       </ng-container>
     
       <!-- Origin Account Column -->
       <ng-container matColumnDef="originAccount">
-        <th mat-header-cell *matHeaderCellDef>Origin</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Origin</th>
         <td mat-cell *matCellDef="let movement">{{ movement.originAccount.accountName }}</td>
       </ng-container>
     
       <!-- Destination Account Column -->
       <ng-container matColumnDef="destinationAccount">
-        <th mat-header-cell *matHeaderCellDef>Destination</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Destination</th>
         <td mat-cell *matCellDef="let movement">{{ movement.destinationAccount.accountName }}</td>
       </ng-container>
     
       <!-- Category Column -->
       <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef>Category</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
         <td mat-cell *matCellDef="let movement">{{ movement.category }}</td>
       </ng-container>
     
@@ -90,7 +92,7 @@
       <tr mat-row *matRowDef="let movement; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator class="w-100 mat-elevation-z8 mb-5"
-                   [length]="movementsCount"
+                   [length]="(movements$ | async)?.value?.count ?? 0"
                    [pageSize]="pagination.pageSize"
                    [pageSizeOptions]="[5, 10, 25, 100]"
                    (page)="onPageChange($event)"

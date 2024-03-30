@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MovementsService } from '../services/movements.service';
-import { Observable, map, shareReplay, tap } from 'rxjs';
+import { Observable, Subscription, map, shareReplay, tap } from 'rxjs';
 import { GetMovementsFilter, GetMovementsResponse } from '../models/movements.model';
 import { AccountsService } from '../services/accounts.service';
 import { Account } from '../models/accounts.model';
-import { Pagination } from '../models/pagination';
+import { Pagination, PaginationResponse } from '../models/pagination';
 import { PageEvent } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
+import { Sorting } from '../models/Sorting';
+import { Result } from '../models/result.model';
 
 @Component({
   selector: 'app-movements-table',
   templateUrl: './movements-table.component.html',
   styleUrls: ['./movements-table.component.scss']
 })
-export class MovementsTableComponent implements OnInit {
+export class MovementsTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   filters: GetMovementsFilter = {
     originAccountId: '' ,
@@ -22,12 +25,19 @@ export class MovementsTableComponent implements OnInit {
     pageNumber: 1,
     pageSize: 10
   };
-  movementsCount : number = 0;
-  movements$? :Observable<GetMovementsResponse[]>;
+  sorting : Sorting = {
+    orderBy: 'date',
+    ascending: false
+  };
+
+  movements$? :Observable<Result<PaginationResponse<GetMovementsResponse>>>;
   accounts$?  :Observable<Account[]>;
 
   displayedColumns: string[] = ['date', 'description', 'amount', 'currency', 'originAccount', 
     'destinationAccount', 'category', 'isImported', 'peridiocity'];
+
+  @ViewChild(MatSort) sort!: MatSort;
+  sortSubscription? : Subscription;
 
   constructor(private _movements : MovementsService,
               private _accounts : AccountsService) { }
@@ -37,11 +47,22 @@ export class MovementsTableComponent implements OnInit {
     this.fetchAccounts();
   }
 
+  ngAfterViewInit() {
+    this.sort.sortChange.subscribe(event => {
+      this.sorting.orderBy = event.active;
+      this.sorting.ascending = event.direction === 'asc';
+      this.fetchMovements();
+    });
+  }
+
+  ngOnDestroy() {
+    this.sortSubscription?.unsubscribe();
+  }
+
   fetchMovements() {
-    this.movements$ = this._movements.GetMovements(this.filters, this.pagination)
+    this.movements$ = this._movements.GetMovements(this.filters, this.pagination, this.sorting)
       .pipe(
-        tap(x => this.movementsCount = x.value.count),
-        map(x => x.value.list)
+        shareReplay(1)
       );
   }
 
