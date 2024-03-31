@@ -33,7 +33,7 @@ export class MovementsTableComponent implements OnInit, AfterViewInit, OnDestroy
   movements$? :Observable<Result<PaginationResponse<GetMovementsResponse>>>;
   accounts$?  :Observable<Account[]>;
 
-  displayedColumns: string[] = ['date', 'description', 'amount', 'currency', 'originAccount', 
+  displayedColumns: string[] = ['date', 'description', 'money', 'currency', 'account', 
     'destinationAccount', 'category', 'isImported', 'peridiocity'];
 
   @ViewChild(MatSort) sort!: MatSort;
