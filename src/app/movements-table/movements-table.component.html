@@ -44,7 +44,9 @@
       <!-- Description Column -->
       <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-        <td mat-cell *matCellDef="let movement">{{ movement.description }}</td>
+        <td mat-cell *matCellDef="let movement" [matTooltip]="movement.description" [matTooltipShowDelay]="1000">
+          {{ movement.description | truncate : DESCRIPTION_MAX_LENGTH }}
+        </td>
       </ng-container>
     
       <!-- Amount Column -->
@@ -74,7 +76,7 @@
       <!-- Category Column -->
       <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef>Category</th>
-        <td mat-cell *matCellDef="let movement">{{ movement.category }}</td>
+        <td mat-cell *matCellDef="let movement">{{ movement.category ?? '-' }}</td>
       </ng-container>
     
       <!-- Is Imported Column -->

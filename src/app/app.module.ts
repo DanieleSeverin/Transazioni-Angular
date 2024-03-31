@@ -21,6 +21,7 @@ import { CreateRuleDialogComponent } from './create-rule-dialog/create-rule-dial
 import { NgxEchartsModule } from 'ngx-echarts';
 import { PieComponent } from './charts/pie/pie.component';
 import { MovementsTableComponent } from './movements-table/movements-table.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MovementsTableComponent } from './movements-table/movements-table.compo
     CreateRuleDialogComponent,
     PieComponent,
     MovementsTableComponent,
+    TruncatePipe,
   ],
   imports: [
     BrowserModule,

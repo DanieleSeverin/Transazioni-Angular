@@ -17,6 +17,8 @@ import { Result } from '../models/result.model';
 })
 export class MovementsTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  DESCRIPTION_MAX_LENGTH = 60;
+
   filters: GetMovementsFilter = {
     originAccountId: '' ,
     destinationAccountId: ''
