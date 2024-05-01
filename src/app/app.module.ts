@@ -22,6 +22,9 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { PieComponent } from './charts/pie/pie.component';
 import { MovementsTableComponent } from './movements-table/movements-table.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { AccountsBalanceComponent } from './home/accounts-balance/accounts-balance.component';
+import { RevenueComponent } from './home/revenue/revenue.component';
+import { CostsComponent } from './home/costs/costs.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,9 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     PieComponent,
     MovementsTableComponent,
     TruncatePipe,
+    AccountsBalanceComponent,
+    RevenueComponent,
+    CostsComponent,
   ],
   imports: [
     BrowserModule,

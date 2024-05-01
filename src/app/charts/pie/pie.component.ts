@@ -25,11 +25,6 @@ export class PieComponent implements OnChanges {
 
   getChartOptions() : EChartsOption {
     return {
-      title: {
-        left: '50%',
-        text: this.title,
-        textAlign: 'center',
-      },
       tooltip: {
         trigger: 'item',
         formatter: '{a} <br/>{b}: {c} ({d}%)'
@@ -38,11 +33,12 @@ export class PieComponent implements OnChanges {
         {
           name: this.title,
           type: 'pie',
-          radius: '50%',
           data: this.chartData.map( (x : PieChartInputData) => {
             return {
               name: `${x.name}`,
-              value: x.value < 0 ? x.value * -1 : x.value
+              value: x.value < 0 ? x.value * -1 : x.value,
+              label: { show: false }, 
+              labelLine: { show: false }
             };
           })
         }

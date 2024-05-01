@@ -1,0 +1,22 @@
+<mat-card style="height: 450px;">
+
+    <!-- Title -->
+    <mat-card-title>
+        <h2>Revenue</h2>
+    </mat-card-title>
+
+    <!-- Content -->
+    <mat-card-content class="h-90 d-flex flex-column j-between">
+        <div *ngIf="(RevenueSummary$ | async) as revenueSummary">
+            <ul>
+              <li *ngFor="let account of revenueSummary">
+                {{ account.accountName }}: {{ account.amount }} {{ account.currency }}
+              </li>
+            </ul>
+        </div>
+
+        <!-- Chart -->
+        <app-pie *ngIf="RevenueSummaryPieChartData$ | async as data" title="Revenue" [chartData]="data"></app-pie>
+
+    </mat-card-content>
+</mat-card>

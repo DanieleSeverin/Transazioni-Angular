@@ -1,33 +1,5 @@
-<h2>Balance</h2>
-<div *ngIf="(AccountsBalanceSummary$ | async) as balanceSummary">
-    <ul>
-      <li *ngFor="let account of balanceSummary">
-        {{ account.accountName }}: {{ account.balance }} {{ account.currency }}
-      </li>
-    </ul>
-</div>
-
-<h2>Revenue</h2>
-<div *ngIf="(RevenueSummary$ | async) as revenueSummary">
-  <ul>
-    <li *ngFor="let account of revenueSummary">
-      {{ account.accountName }}: {{ account.amount }} {{ account.currency }}
-    </li>
-  </ul>
-</div>
-
-<h2>Costs</h2>
-<div *ngIf="(CostsSummary$ | async) as costsSummary">
-  <ul>
-    <li *ngFor="let account of costsSummary">
-      {{ account.accountName }}: {{ account.amount }} {{ account.currency }}
-    </li>
-  </ul>
-</div>
-
-<!-- Grafici -->
-<div class="w-100 d-flex j-center gap-5">
-  <app-pie *ngIf="AccountsBalanceSummaryPieChartData$ | async as data" title="Accounts Balance" [chartData]="data"></app-pie>
-  <app-pie *ngIf="RevenueSummaryPieChartData$ | async as data" title="Revenue" [chartData]="data"></app-pie>
-  <app-pie *ngIf="CostsSummaryPieChartData$ | async as data" title="Costs" [chartData]="data"></app-pie>
-</div>
+<section class="container mt-3">
+  <app-accounts-balance></app-accounts-balance>
+  <app-revenue></app-revenue>
+  <app-costs></app-costs>
+</section>
