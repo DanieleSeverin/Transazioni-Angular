@@ -4,9 +4,11 @@ import { ImportMovementsComponent } from './import-movements/import-movements.co
 import { HomeComponent } from './home/home.component';
 import { AddComponent } from './add/add.component';
 import { MovementsTableComponent } from './movements-table/movements-table.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'Login', component: LoginComponent },
   { path: 'import', component: ImportMovementsComponent },
   { path: 'add', component: AddComponent },
   { path: 'movements', component: MovementsTableComponent },

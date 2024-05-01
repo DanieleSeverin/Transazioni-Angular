@@ -25,6 +25,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { AccountsBalanceComponent } from './home/accounts-balance/accounts-balance.component';
 import { RevenueComponent } from './home/revenue/revenue.component';
 import { CostsComponent } from './home/costs/costs.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { CostsComponent } from './home/costs/costs.component';
     AccountsBalanceComponent,
     RevenueComponent,
     CostsComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
