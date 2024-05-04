@@ -11,19 +11,19 @@ export class ApiService {
   constructor(private _http: HttpClient) { }
 
   get<TResponse>(url: string, params? : HttpParams) :Observable<TResponse> {
-    return this._http.get<TResponse>(`${environment.apiUrl}/${url}`, { params });
+    return this._http.get<TResponse>(`${environment.apiUrl}/${url}`, { ...params, withCredentials: true });
   }
 
   post<TRequest, TResponse>(url: string, data: TRequest) :Observable<TResponse> {
-    return this._http.post<TResponse>(`${environment.apiUrl}/${url}`, data);
+    return this._http.post<TResponse>(`${environment.apiUrl}/${url}`, data, { withCredentials: true });
   }
 
   put<TRequest, TResponse>(url: string, data: TRequest) :Observable<TResponse> {
-    return this._http.put<TResponse>(`${environment.apiUrl}/${url}`, data);
+    return this._http.put<TResponse>(`${environment.apiUrl}/${url}`, data, { withCredentials: true });
   }
 
   delete<TResponse>(url: string) :Observable<TResponse> {
-    return this._http.delete<TResponse>(`${environment.apiUrl}/${url}`);
+    return this._http.delete<TResponse>(`${environment.apiUrl}/${url}`, { withCredentials: true });
   }
 
 }
