@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CreateAccountDialogComponent } from '../create-account-dialog/create-account-dialog.component';
 import { AccountsService } from '../services/accounts.service';
@@ -17,7 +17,7 @@ import { AccountRulesService } from '../services/account-rules.service';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss']
 })
-export class AddComponent implements OnInit {
+export class AddComponent {
 
   dialogRef : MatDialogRef<any> | null = null;
 
@@ -27,9 +27,6 @@ export class AddComponent implements OnInit {
               private _dialog: MatDialog,
               private _notifier: NotificationService) { }
 
-  ngOnInit(): void {
-  }
-
   openCreateNewAccountDialog(){
     this.dialogRef = this._dialog.open(CreateAccountDialogComponent, {
       minWidth: '40vw',
@@ -37,16 +34,15 @@ export class AddComponent implements OnInit {
     });
 
     this.dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed. Result: ', result);
       this.dialogRef = null;
 
       if(result){
-        this.CreateAccount(result);
+        this.createAccount(result);
       }
     });
   }
 
-  CreateAccount(account : CreateAccountRequest){
+  createAccount(account : CreateAccountRequest){
     if(!account){
       return;
     }
@@ -77,14 +73,12 @@ export class AddComponent implements OnInit {
       this.dialogRef = null;
 
       if(result){
-        this.CreateMovement(result);
+        this.createMovement(result);
       }
     });
   }
 
-  CreateMovement(movement: Movement){
-    console.log(movement);
-
+  createMovement(movement: Movement){
     this._movements.CreateMovement(movement).subscribe({
       next: data => {
         console.log(data);
@@ -108,16 +102,15 @@ export class AddComponent implements OnInit {
     });
 
     this.dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed. Result: ', result);
       this.dialogRef = null;
 
       if(result){
-        this.CreateRule(result);
+        this.createRule(result);
       }
     });
   }
 
-  CreateRule(rule: AccountRule){
+  createRule(rule: AccountRule){
     this._accountRules.CreateAccountRule(rule).subscribe({
       next: data => {
         console.log(data);

@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import { PieChartInputData } from 'src/app/models/charts/PieChartInputData.model';
-import { CostsSummary } from 'src/app/models/reporting/costs-summary.model';
 
 @Component({
   selector: 'app-pie',

@@ -51,7 +51,7 @@ export class CreateMovementDialogComponent {
       map( response => response.value),
       catchError(err => {
         console.error(err);
-        this._notifier.showError(err.error.name ?? 'Error loading accounts');
+        this._notifier.showHttpError(err, 'Error loading accounts');
         return of([]);
       })
     );
