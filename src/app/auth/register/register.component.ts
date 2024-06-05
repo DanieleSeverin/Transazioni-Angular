@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
       next: () => {
         console.log('register successful');
         this._notifier.showSuccess('User registered successfully');
-        this._router.navigate(['/login']);
+        this._router.navigate(['']);
       },
       error: (error) => {
         console.error('There was an error!', error);
