@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable, map, shareReplay } from 'rxjs';
 import { PieChartInputData } from 'src/app/models/charts/PieChartInputData.model';
 import { RevenueSummary } from 'src/app/models/reporting/revenue-summary.model';
@@ -9,7 +9,7 @@ import { ReportingService } from 'src/app/services/reporting.service';
   templateUrl: './revenue.component.html',
   styleUrls: ['./revenue.component.scss']
 })
-export class RevenueComponent implements OnInit {
+export class RevenueComponent {
 
   RevenueSummary$ :Observable<RevenueSummary[]>;
   RevenueSummaryPieChartData$ :Observable<PieChartInputData[]>;
@@ -33,9 +33,6 @@ export class RevenueComponent implements OnInit {
         });
       })
     );
-  }
-
-  ngOnInit(): void {
   }
 
 }

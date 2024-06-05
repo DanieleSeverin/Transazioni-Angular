@@ -1,12 +1,12 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MovementsService } from '../services/movements.service';
-import { Observable, Subscription, map, shareReplay, tap } from 'rxjs';
+import { Observable, Subscription, map, shareReplay } from 'rxjs';
 import { GetMovementsFilter, GetMovementsResponse } from '../models/movements.model';
 import { AccountsService } from '../services/accounts.service';
 import { Account } from '../models/accounts.model';
 import { Pagination, PaginationResponse } from '../models/pagination';
 import { PageEvent } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import { Sorting } from '../models/Sorting';
 import { Result } from '../models/result.model';
 

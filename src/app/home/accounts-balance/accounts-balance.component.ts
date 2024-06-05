@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable, map, shareReplay } from 'rxjs';
 import { PieChartInputData } from 'src/app/models/charts/PieChartInputData.model';
 import { AccountsBalanceSummary } from 'src/app/models/reporting/account-balance-summary.model';
