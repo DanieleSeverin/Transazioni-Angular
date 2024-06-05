@@ -1,4 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +12,9 @@ export class NavbarComponent implements OnInit {
   isMenuOpen: boolean = false;
   isSmallScreen: boolean = false;
 
-  constructor() {
+  constructor(public _auth : AuthService,
+              private _router : Router)
+  {
     this.checkScreenSize();
   }
 
@@ -32,5 +36,17 @@ export class NavbarComponent implements OnInit {
 
   closeSubMenu() {
     this.isMenuOpen = false;
+  }
+
+  logout(){
+    this._auth.logout().subscribe({
+      next: () => {
+        console.log('User logged out successfully');
+        this._router.navigate(['/Login']);
+      },
+      error: (error) => {
+        console.error('Error logging out user', error);
+      }
+    });
   }
 }

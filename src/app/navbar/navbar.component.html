@@ -1,25 +1,33 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
+
       <span>
         <img src="your-logo.png" alt="Logo">
-        
       </span>
+
       <span class="fill-space"></span>
-      <button mat-icon-button *ngIf="isSmallScreen" class="hamburger" (click)="toggleMenu()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <a mat-button *ngIf="!isSmallScreen" routerLink="">
-        <mat-icon>home</mat-icon>
-        <span>Home</span>
-      </a>
-      <a mat-button *ngIf="!isSmallScreen" routerLink="import">
-        <mat-icon>import_export</mat-icon>
-        <span>Import</span>
-      </a>
-      <a mat-button *ngIf="!isSmallScreen" routerLink="add">
-        <mat-icon>add</mat-icon>
-        <span>Add</span>
-      </a>
+
+      <ng-container *ngIf="_auth.isLoggedIn()">
+        <button mat-icon-button *ngIf="isSmallScreen" class="hamburger" (click)="toggleMenu()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <a mat-button *ngIf="!isSmallScreen" routerLink="">
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </a>
+        <a mat-button *ngIf="!isSmallScreen" routerLink="import">
+          <mat-icon>import_export</mat-icon>
+          <span>Import</span>
+        </a>
+        <a mat-button *ngIf="!isSmallScreen" routerLink="add">
+          <mat-icon>add</mat-icon>
+          <span>Add</span>
+        </a>
+        <a *ngIf="!isSmallScreen" mat-button (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </a>
+      </ng-container>
     </mat-toolbar-row>
 </mat-toolbar>
   
@@ -36,6 +44,10 @@
       <a mat-list-item routerLink="add" (click)="toggleMenu()">
         <mat-icon>add</mat-icon>
         <span>Add</span>
+      </a>
+      <a mat-list-item (click)="toggleMenu(); logout();">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
       </a>
 
     </mat-nav-list>
