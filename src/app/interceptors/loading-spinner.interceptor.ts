@@ -3,10 +3,11 @@ import { HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angula
 import { Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { SpinnerService } from '../services/spinner.service';
+import { NotificationService } from '../services/notification.service';
 
 @Injectable()
 export class LoadingSpinnerInterceptor implements HttpInterceptor {
-  constructor(private spinnerService: SpinnerService) {}
+  constructor(private spinnerService: SpinnerService, private notifier : NotificationService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
     // Show spinner when request starts
@@ -23,6 +24,7 @@ export class LoadingSpinnerInterceptor implements HttpInterceptor {
         }
       }),
       catchError((error) => {
+        this.notifier.showHttpError(error);
         // Hide spinner when request encounters an error
         this.spinnerService.hide();
         throw error;
