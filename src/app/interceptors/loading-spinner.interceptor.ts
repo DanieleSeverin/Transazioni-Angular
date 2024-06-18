@@ -24,7 +24,6 @@ export class LoadingSpinnerInterceptor implements HttpInterceptor {
         }
       }),
       catchError((error) => {
-        this.notifier.showHttpError(error);
         // Hide spinner when request encounters an error
         this.spinnerService.hide();
         throw error;
