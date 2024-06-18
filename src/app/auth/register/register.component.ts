@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegisterUserRequest } from 'src/app/models/auth.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +20,10 @@ export class RegisterComponent implements OnInit {
   get password() { return this.registerForm.get('password'); }
 
   constructor(private _formBuilder: FormBuilder, 
-              private _auth : AuthService) { }
+              private _auth : AuthService,
+              private _notifier : NotificationService,
+              private _router : Router
+            ) { }
 
   ngOnInit(): void {
     this.initRegisterForm();
@@ -44,6 +49,8 @@ export class RegisterComponent implements OnInit {
     this._auth.register(registerUserRequest).subscribe({
       next: () => {
         console.log('register successful');
+        this._notifier.showSuccess('User registered successfully');
+        this._router.navigate(['']);
       },
       error: (error) => {
         console.error('There was an error!', error);
