@@ -1,26 +1,20 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { LogInUserRequest, RegisterUserRequest } from '../models/auth.model';
-import { concat, tap } from 'rxjs';
-import { Router } from '@angular/router';
+import { LogInUserRequest, AuthResponse, RegisterUserRequest } from '../models/auth.model';
+import { catchError, concat, Observable, tap } from 'rxjs';
+import { LocalStorageKeys } from '../models/localStorageKeys.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private _loggedIn = false;
+  constructor(private _api : ApiService) { }
 
-  constructor(private _api : ApiService,
-              private _router : Router) 
-  {
-    this.askServerIfLoggedIn();
-  }
-
-  login(credentials : LogInUserRequest) {
-    return this._api.post('users/Login', credentials)
+  login(credentials : LogInUserRequest) :Observable<AuthResponse> {
+    return this._api.post<LogInUserRequest, AuthResponse>('users/Login', credentials)
       .pipe(
-        tap(() => this._loggedIn = true)
+        tap(this.setTokensExpirationsToLocalStorage)
       );
   }
 
@@ -36,36 +30,31 @@ export class AuthService {
     return concat(register, logIn);
   }
 
-  refreshJwt() {
-    return this._api.get('users/Refresh');
-  }
-
-  logout() {
-    return this._api.post('users/logout', {})
+  refreshJwt() :Observable<AuthResponse> {
+    return this._api.get<AuthResponse>('users/Refresh')
       .pipe(
-        tap(() => this._loggedIn = false)
+        tap(this.setTokensExpirationsToLocalStorage)
       );
   }
 
-  isLoggedIn() {
-    return this._loggedIn;
+  logout() {
+    localStorage.removeItem(LocalStorageKeys.accessTokenExpireAt);
+    localStorage.removeItem(LocalStorageKeys.refreshTokenExpireAt);
+
+    return this._api.post('users/logout', {});
   }
 
-  private askServerIfLoggedIn() {
-    this._api.get('users/IsLoggedIn').subscribe({
-      next: (response) => {
-        this._loggedIn = true;
-        const url = this._router.url;
+  isLoggedIn() :boolean {
+    const accessTokenExpireAtString : string | null = localStorage.getItem(LocalStorageKeys.accessTokenExpireAt);
+    if(!accessTokenExpireAtString) return false;
 
-        if(url === '/Login' || url === '/Register') {
-          this._router.navigate(['']);
-        }
-      },
-      error: (error) => {
-        console.error(error);
-        this._loggedIn = false;
-        this._router.navigate(['/Login']);
-      }
-    });
+    const accessTokenExpireAt : Date = new Date(accessTokenExpireAtString);
+    return accessTokenExpireAt.getTime() > new Date().getTime();
   }
+
+  private setTokensExpirationsToLocalStorage(response : AuthResponse) {
+    localStorage.setItem(LocalStorageKeys.accessTokenExpireAt, new Date(response.accessTokenExpireAt).toISOString());
+    localStorage.setItem(LocalStorageKeys.refreshTokenExpireAt, new Date(response.refreshTokenExpireAt).toISOString());
+  }
+
 }

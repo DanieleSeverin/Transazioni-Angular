@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
       password: this.password?.value
     };
 
+    console.log('Login attempt: ', logInUserRequest);
+
     this._auth.login(logInUserRequest).subscribe({
       next: () => {
         console.log('Login successful');

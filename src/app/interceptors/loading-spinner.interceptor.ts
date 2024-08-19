@@ -3,13 +3,13 @@ import { HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angula
 import { Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { SpinnerService } from '../services/spinner.service';
-import { NotificationService } from '../services/notification.service';
 
 @Injectable()
 export class LoadingSpinnerInterceptor implements HttpInterceptor {
-  constructor(private spinnerService: SpinnerService, private notifier : NotificationService) {}
+  constructor(private spinnerService: SpinnerService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
+
     // Show spinner when request starts
     // Need to use setTimeout to avoid ExpressionChangedAfterItHasBeenCheckedError
     setTimeout(() => {

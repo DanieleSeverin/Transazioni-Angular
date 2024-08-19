@@ -16,8 +16,6 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
 
-        console.log("RefreshTokenInterceptor");
-
         if(!request.url.startsWith(environment.apiUrl)) {
             return next.handle(request);
         }
