@@ -27,6 +27,7 @@ import { RevenueComponent } from './home/revenue/revenue.component';
 import { CostsComponent } from './home/costs/costs.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { RefreshTokenInterceptor } from './interceptors/refresh-token.interceptor';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,11 @@ import { RegisterComponent } from './auth/register/register.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingSpinnerInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RefreshTokenInterceptor,
       multi: true
     }
   ],
