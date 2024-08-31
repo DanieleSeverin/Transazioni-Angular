@@ -9,7 +9,7 @@ import { LocalStorageKeys } from '../models/localStorageKeys.enum';
 })
 export class AuthService {
 
-  constructor(private _api : ApiService) { }
+  constructor(private _api : ApiService) { } 
 
   login(credentials : LogInUserRequest) :Observable<AuthResponse> {
     return this._api.post<LogInUserRequest, AuthResponse>('users/Login', credentials)
