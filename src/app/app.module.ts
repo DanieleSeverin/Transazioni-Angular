@@ -69,11 +69,11 @@ import { RefreshTokenInterceptor } from './interceptors/refresh-token.intercepto
       useClass: LoadingSpinnerInterceptor,
       multi: true
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RefreshTokenInterceptor,
-      multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: RefreshTokenInterceptor,
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })

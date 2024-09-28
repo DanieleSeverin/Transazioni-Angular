@@ -50,6 +50,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
                 catchError((error) => {
                     this.isRefreshing = false;
 
+                    console.error('Error handle401Error', error);
                     // On error, clear the queue and navigate to login
                     this._auth.logout();
                     this._router.navigate(['/Login']);
