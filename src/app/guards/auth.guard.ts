@@ -17,18 +17,7 @@ export class AuthGuard implements CanActivate {
 
       if(isLoggedIn) return true;
 
-      this._auth.logout().subscribe({
-        next: () => {
-          console.log('Activated Auth Guard, user logged out.');
-        },
-        error: () => {
-          console.error('Activated Auth Guard, error logging out user.');
-        },
-        complete: () => {
-          this._router.navigate(['/Login']);
-        }
-      });
-
+      this._router.navigate(['/Login']);
       return false;
   }
   

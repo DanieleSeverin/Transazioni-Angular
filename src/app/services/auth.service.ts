@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   refreshJwt() :Observable<AuthResponse> {
-    return this._api.get<AuthResponse>('users/Refresh')
+    return this._api.post<any, AuthResponse>('users/refresh', null)
       .pipe(
         tap(this.setTokensExpirationsToLocalStorage)
       );
@@ -45,11 +45,11 @@ export class AuthService {
   }
 
   isLoggedIn() :boolean {
-    const accessTokenExpireAtString : string | null = localStorage.getItem(LocalStorageKeys.accessTokenExpireAt);
-    if(!accessTokenExpireAtString) return false;
+    const refreshTokenExpireAtString : string | null = localStorage.getItem(LocalStorageKeys.refreshTokenExpireAt);
+    if(!refreshTokenExpireAtString) return false;
 
-    const accessTokenExpireAt : Date = new Date(accessTokenExpireAtString);
-    return accessTokenExpireAt.getTime() > new Date().getTime();
+    const refreshTokenExpireAt : Date = new Date(refreshTokenExpireAtString);
+    return refreshTokenExpireAt.getTime() > new Date().getTime();
   }
 
   private setTokensExpirationsToLocalStorage(response : AuthResponse) {
