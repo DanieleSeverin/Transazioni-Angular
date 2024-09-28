@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { LogInUserRequest, AuthResponse, RegisterUserRequest } from '../models/auth.model';
-import { catchError, concat, Observable, tap } from 'rxjs';
+import { concat, Observable, tap } from 'rxjs';
 import { LocalStorageKeys } from '../models/localStorageKeys.enum';
 
 @Injectable({

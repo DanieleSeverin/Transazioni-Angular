@@ -7,7 +7,7 @@
 
       <span class="fill-space"></span>
 
-      <ng-container *ngIf="_auth.isLoggedIn()">
+      <ng-container *ngIf="isLoggedIn">
         <button mat-icon-button *ngIf="isSmallScreen" class="hamburger" (click)="toggleMenu()">
           <mat-icon>menu</mat-icon>
         </button>

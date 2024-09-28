@@ -12,10 +12,13 @@ export class NavbarComponent implements OnInit {
   isMenuOpen: boolean = false;
   isSmallScreen: boolean = false;
 
+  isLoggedIn: boolean;
+
   constructor(public _auth : AuthService,
               private _router : Router)
   {
     this.checkScreenSize();
+    this.isLoggedIn = this._auth.isLoggedIn();
   }
 
   ngOnInit(){
