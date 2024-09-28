@@ -16,7 +16,7 @@ export class NotificationService {
   showHttpError(error : HttpErrorResponse, 
                 fallbackMessage : string = 'Internal Error', 
                 duration: number = 3000, 
-                action: string = 'Close'){
+                action: string = 'Close') {
     const message = error?.error?.name ?? fallbackMessage;
     this.showNotification(message, 'error-snackbar', duration, action);
   }

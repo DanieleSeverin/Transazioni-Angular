@@ -80,7 +80,7 @@ export class ImportMovementsComponent implements OnInit {
       },
       error: error => {
         console.error(error);
-        this._notifier.showError(error?.name ?? 'Error creating account');
+        this._notifier.showHttpError(error, 'Error creating account');
       }
     });
   }
