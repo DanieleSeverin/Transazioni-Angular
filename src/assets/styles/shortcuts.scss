@@ -55,7 +55,23 @@
 @for $i from 1 through 100 {
     .w-#{$i} { 
         width: $i + 0%!important;
-        }
+    }
+
+    @media (min-width: 576px) {
+        .w-#{$i}-sm { width: #{$i + '%'}; }
+      }
+      
+      @media (min-width: 768px) {
+        .w-#{$i}-md { width: #{$i + '%'}; }
+      }
+      
+      @media (min-width: 992px) {
+        .w-#{$i}-lg { width: #{$i + '%'}; }
+      }
+      
+      @media (min-width: 1200px) {
+        .w-#{$i}-xl { width: #{$i + '%'}; }
+      }
 }
 
 // width viewport
