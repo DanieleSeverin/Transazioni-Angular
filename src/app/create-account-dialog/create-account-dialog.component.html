@@ -11,7 +11,10 @@
             <mat-label>Account name</mat-label>
             <input matInput placeholder="My account name" formControlName="accountName">
         </mat-form-field>
-    
-        <mat-checkbox formControlName="isPatrimonial">Bank account</mat-checkbox>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Account type</mat-label>
+            <input matInput placeholder="Bank" formControlName="accountType">
+        </mat-form-field>
     </div>
 </form>

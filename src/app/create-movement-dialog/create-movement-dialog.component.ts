@@ -15,8 +15,8 @@ import { Result } from '../models/result.model';
 })
 export class CreateMovementDialogComponent {
 
-  patrimonialAccounts$: Observable<Account[]>;
-  economicAccounts$: Observable<Account[]>;
+  bankAccounts$: Observable<Account[]>;
+  notBankAccounts$: Observable<Account[]>;
 
   categories : any[] = []; // TODO
   peridiocities = Object.values(Periodicity);
@@ -56,12 +56,12 @@ export class CreateMovementDialogComponent {
       })
     );
     
-    this.patrimonialAccounts$ = accountsValue$.pipe(
-      map( accounts => accounts.filter(account => account.isPatrimonial)),
+    this.bankAccounts$ = accountsValue$.pipe(
+      map( accounts => accounts.filter(account => account.accountName == "Bank")),
     );
 
-    this.economicAccounts$ = accountsValue$.pipe(
-      map( accounts => accounts.filter(account => !account.isPatrimonial)),
+    this.notBankAccounts$ = accountsValue$.pipe(
+      map( accounts => accounts.filter(account => account.accountName != "Bank")),
     );
   }
 

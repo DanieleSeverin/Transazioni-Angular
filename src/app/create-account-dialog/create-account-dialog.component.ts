@@ -12,11 +12,11 @@ export class CreateAccountDialogComponent {
 
   form = this._formBuilder.group({
     accountName : ['', [Validators.required]],
-    isPatrimonial : [false, [Validators.required]],
+    accountType : ['', [Validators.required]],
   });
 
   get accountName() { return this.form.get('accountName'); }
-  get isPatrimonial() { return this.form.get('isPatrimonial'); }
+  get accountType() { return this.form.get('accountType'); }
 
   constructor(public dialogRef: MatDialogRef<CreateAccountDialogComponent>,
               private _formBuilder : FormBuilder) { }
@@ -24,7 +24,7 @@ export class CreateAccountDialogComponent {
   save(){
     const account :CreateAccountRequest = {
       accountName: this.accountName?.value,
-      isPatrimonial: this.isPatrimonial?.value
+      accountType: this.accountType?.value
     };
 
     this.dialogRef.close(account);

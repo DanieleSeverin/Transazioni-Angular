@@ -1,10 +1,10 @@
 export interface Account{
     id: string
     accountName: string
-    isPatrimonial: boolean
+    accountType: string
 }
 
 export interface CreateAccountRequest{
     accountName: string
-    isPatrimonial: boolean
+    accountType: string
 }

@@ -11,7 +11,7 @@
     <mat-form-field appearance="outline">
         <mat-label>Account origin</mat-label>
         <mat-select formControlName="accountId">
-            <mat-option *ngFor="let account of patrimonialAccounts$ | async" [value]="account.id">
+            <mat-option *ngFor="let account of bankAccounts$ | async" [value]="account.id">
                 {{ account.accountName }}
             </mat-option>
         </mat-select>
@@ -22,7 +22,7 @@
     <mat-form-field appearance="outline">
         <mat-label>Account destination</mat-label>
         <mat-select formControlName="destinationAccountId">
-            <mat-option *ngFor="let account of economicAccounts$ | async" [value]="account.id">
+            <mat-option *ngFor="let account of notBankAccounts$ | async" [value]="account.id">
                 {{ account.accountName }}
             </mat-option>
         </mat-select>
