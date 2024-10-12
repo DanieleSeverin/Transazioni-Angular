@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable, map, shareReplay } from 'rxjs';
-import { PieChartInputData } from 'src/app/models/charts/PieChartInputData.model';
+import { ChartInputData } from 'src/app/models/charts/ChartInputData.model';
 import { RevenueSummary } from 'src/app/models/reporting/revenue-summary.model';
 import { ReportingService } from 'src/app/services/reporting.service';
 
@@ -12,7 +12,7 @@ import { ReportingService } from 'src/app/services/reporting.service';
 export class RevenueComponent {
 
   RevenueSummary$ :Observable<RevenueSummary[]>;
-  RevenueSummaryPieChartData$ :Observable<PieChartInputData[]>;
+  RevenueSummaryPieChartData$ :Observable<ChartInputData[]>;
 
   constructor(private _reporting : ReportingService) 
   { 

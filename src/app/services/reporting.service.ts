@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
 import { Result } from '../models/result.model';
-import { AccountsBalanceSummary } from '../models/reporting/account-balance-summary.model';
+import { MonthlyAccountBalanceSummary } from '../models/reporting/account-balance-summary.model';
 import { CostsSummary } from '../models/reporting/costs-summary.model';
 import { RevenueSummary } from '../models/reporting/revenue-summary.model';
 
@@ -13,7 +13,7 @@ export class ReportingService {
 
   constructor(private _api : ApiService) { }
 
-  GetAccountsBalance() :Observable<Result<AccountsBalanceSummary[]>> {
+  GetAccountsBalance() :Observable<Result<MonthlyAccountBalanceSummary[]>> {
     const url = `reporting/accounts-balance`;
     return this._api.get(url);
   }

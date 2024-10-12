@@ -28,6 +28,7 @@ import { CostsComponent } from './home/costs/costs.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { RefreshTokenInterceptor } from './interceptors/refresh-token.interceptor';
+import { BarchartComponent } from './charts/barchart/barchart.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { RefreshTokenInterceptor } from './interceptors/refresh-token.intercepto
     CostsComponent,
     LoginComponent,
     RegisterComponent,
+    BarchartComponent,
   ],
   imports: [
     BrowserModule,

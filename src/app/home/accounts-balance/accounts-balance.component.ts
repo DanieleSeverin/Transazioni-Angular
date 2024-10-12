@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable, map, shareReplay } from 'rxjs';
-import { PieChartInputData } from 'src/app/models/charts/PieChartInputData.model';
-import { AccountsBalanceSummary } from 'src/app/models/reporting/account-balance-summary.model';
+import { ChartDataItem, ChartInputData } from 'src/app/models/charts/ChartInputData.model';
+import { MonthlyAccountBalanceSummary } from 'src/app/models/reporting/account-balance-summary.model';
 import { ReportingService } from 'src/app/services/reporting.service';
 
 @Component({
@@ -11,8 +11,8 @@ import { ReportingService } from 'src/app/services/reporting.service';
 })
 export class AccountsBalanceComponent {
 
-  AccountsBalanceSummary$ :Observable<AccountsBalanceSummary[]>;
-  AccountsBalanceSummaryPieChartData$ :Observable<PieChartInputData[]>;
+  AccountsBalanceSummary$ :Observable<MonthlyAccountBalanceSummary[]>;
+  AccountsBalanceSummaryChartData$ :Observable<ChartDataItem[]>;
   TotalBalance : Observable<number>;
 
   constructor(private _reporting : ReportingService) 
@@ -23,13 +23,15 @@ export class AccountsBalanceComponent {
       map( x => x.value)
     );
 
-    this.AccountsBalanceSummaryPieChartData$ = this.AccountsBalanceSummary$
+    this.AccountsBalanceSummaryChartData$ = this.AccountsBalanceSummary$
     .pipe(
       map( x => {
         return x.map( y => {
           return {
-            name: `${y.accountName} (${y.currency})`,
-            value: y.balance
+            accountId: y.accountId,
+            accountName: y.accountName,
+            month: new Date(y.month).toISOString(),
+            cumulativeBalance: y.cumulativeBalance,
           };
         });
       })
@@ -38,7 +40,7 @@ export class AccountsBalanceComponent {
     this.TotalBalance = this.AccountsBalanceSummary$
     .pipe(
       map( x => {
-        return x.reduce( (acc, val) => acc + val.balance, 0);
+        return x.reduce( (acc, val) => acc + val.cumulativeBalance, 0);
       })
     );
   }

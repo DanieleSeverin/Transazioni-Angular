@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { EChartsOption } from 'echarts';
-import { PieChartInputData } from 'src/app/models/charts/PieChartInputData.model';
+import { ChartInputData } from 'src/app/models/charts/ChartInputData.model';
 
 @Component({
   selector: 'app-pie',
@@ -10,7 +10,7 @@ import { PieChartInputData } from 'src/app/models/charts/PieChartInputData.model
 export class PieComponent implements OnChanges {
 
   @Input() title ?: string;
-  @Input() chartData: PieChartInputData[] = [];
+  @Input() chartData: ChartInputData[] = [];
 
   chartOptions? : EChartsOption;
 
@@ -32,7 +32,7 @@ export class PieComponent implements OnChanges {
         {
           name: this.title,
           type: 'pie',
-          data: this.chartData.map( (x : PieChartInputData) => {
+          data: this.chartData.map( (x : ChartInputData) => {
             return {
               name: `${x.name}`,
               value: x.value < 0 ? x.value * -1 : x.value,

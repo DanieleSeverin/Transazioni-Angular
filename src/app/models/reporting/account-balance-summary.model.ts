@@ -1,6 +1,6 @@
-export interface AccountsBalanceSummary{
+export interface MonthlyAccountBalanceSummary{
     accountId : string
     accountName : string 
-    balance : number
-    currency : string
+    month: Date
+    cumulativeBalance : number
 }

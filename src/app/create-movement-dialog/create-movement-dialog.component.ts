@@ -57,11 +57,11 @@ export class CreateMovementDialogComponent {
     );
     
     this.bankAccounts$ = accountsValue$.pipe(
-      map( accounts => accounts.filter(account => account.accountName == "Bank")),
+      map( accounts => accounts.filter(account => account.accountType == "Bank")),
     );
 
     this.notBankAccounts$ = accountsValue$.pipe(
-      map( accounts => accounts.filter(account => account.accountName != "Bank")),
+      map( accounts => accounts.filter(account => account.accountType != "Bank")),
     );
   }
 
