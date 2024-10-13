@@ -11,19 +11,19 @@ import { ReportingService } from 'src/app/services/reporting.service';
 })
 export class AccountsBalanceComponent {
 
-  AccountsBalanceSummary$ :Observable<MonthlyAccountBalanceSummary[]>;
-  AccountsBalanceSummaryChartData$ :Observable<ChartDataItem[]>;
-  TotalBalance : Observable<number>;
+  MonthlyAccountsBalanceSummary$ :Observable<MonthlyAccountBalanceSummary[]>;
+  MonthlyAccountsBalanceSummaryChartData$ :Observable<ChartDataItem[]>;
+  TotalBalance$ : Observable<number>;
 
   constructor(private _reporting : ReportingService) 
   { 
-    this.AccountsBalanceSummary$ = _reporting.GetAccountsBalance()
+    this.MonthlyAccountsBalanceSummary$ = _reporting.GetMonthlyAccountsBalance()
     .pipe(
       shareReplay(1),
       map( x => x.value)
     );
 
-    this.AccountsBalanceSummaryChartData$ = this.AccountsBalanceSummary$
+    this.MonthlyAccountsBalanceSummaryChartData$ = this.MonthlyAccountsBalanceSummary$
     .pipe(
       map( x => {
         return x.map( y => {
@@ -37,10 +37,10 @@ export class AccountsBalanceComponent {
       })
     );
 
-    this.TotalBalance = this.AccountsBalanceSummary$
+    this.TotalBalance$ = _reporting.GetAccountsBalance()
     .pipe(
       map( x => {
-        return x.reduce( (acc, val) => acc + val.cumulativeBalance, 0);
+        return x.value.reduce( (acc, val) => acc + val.balance, 0);
       })
     );
   }
